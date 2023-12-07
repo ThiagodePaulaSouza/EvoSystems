@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EvoSystems.Migrations
 {
     /// <inheritdoc />
-    public partial class firstmigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace EvoSystems.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Abbreviation = table.Column<string>(type: "nvarchar(3)", nullable: false),
+                    Abbreviation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -35,7 +35,7 @@ namespace EvoSystems.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RG = table.Column<string>(type: "nvarchar(9)", nullable: false),
+                    RG = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     DepartamentId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -56,6 +56,12 @@ namespace EvoSystems.Migrations
                 name: "IX_Employee_DepartamentId",
                 table: "Employee",
                 column: "DepartamentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_RG",
+                table: "Employee",
+                column: "RG",
+                unique: true);
         }
 
         /// <inheritdoc />

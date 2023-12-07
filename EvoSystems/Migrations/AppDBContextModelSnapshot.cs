@@ -49,7 +49,7 @@ namespace EvoSystems.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departament", (string)null);
+                    b.ToTable("Departament");
                 });
 
             modelBuilder.Entity("EvoSystems.Models.Employee", b =>
@@ -87,7 +87,7 @@ namespace EvoSystems.Migrations
                     b.HasIndex("RG")
                         .IsUnique();
 
-                    b.ToTable("Employee", (string)null);
+                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("EvoSystems.Models.Employee", b =>

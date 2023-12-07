@@ -1,5 +1,6 @@
 ﻿using EvoSystems.DataContext;
 using EvoSystems.Models;
+using EvoSystems.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace EvoSystems.Service.DepartamentService
@@ -7,6 +8,7 @@ namespace EvoSystems.Service.DepartamentService
     public class DepartamentService : IDepartament
     {
         private readonly AppDBContext _context;
+        private readonly EmployeeRepository employeeRepository;
         public DepartamentService(AppDBContext context)
         {
             _context = context;
@@ -31,7 +33,8 @@ namespace EvoSystems.Service.DepartamentService
                 serviceResponse.Data = newDepartament;
                 serviceResponse.Message = "Departament created.";
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;
@@ -54,7 +57,8 @@ namespace EvoSystems.Service.DepartamentService
                 serviceResponse.Data = departament;
                 serviceResponse.Message = "Department successfully deleted.";
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;
@@ -77,7 +81,8 @@ namespace EvoSystems.Service.DepartamentService
                     serviceResponse.Message = "No data was found.";
                 }
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;
@@ -95,7 +100,8 @@ namespace EvoSystems.Service.DepartamentService
                 Departament departament = await _context.Departament.AsNoTracking().SingleAsync(x => x.Id == id);
                 serviceResponse.Data = departament;
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;
@@ -112,7 +118,7 @@ namespace EvoSystems.Service.DepartamentService
             try
             {
                 Departament departament = await _context.Departament.AsNoTracking().SingleAsync(x => x.Id == id);
-               
+
                 departament.IsActive = false;
                 departament.LastUpdatedAt = DateTime.Now.ToLocalTime();
 
@@ -121,9 +127,10 @@ namespace EvoSystems.Service.DepartamentService
 
                 serviceResponse.Data = departament;
                 serviceResponse.Message = "Department successfully inactivated.";
-                
 
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;
@@ -140,7 +147,7 @@ namespace EvoSystems.Service.DepartamentService
             try
             {
                 Departament departament = await _context.Departament.AsNoTracking().SingleAsync(x => x.Id == editedDepartament.Id);
-               
+
                 departament.LastUpdatedAt = DateTime.Now.ToLocalTime();
 
                 _context.Departament.Update(editedDepartament);
@@ -148,9 +155,10 @@ namespace EvoSystems.Service.DepartamentService
 
                 serviceResponse.Data = editedDepartament;
                 serviceResponse.Message = "Department successfully updated.";
-                
 
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 serviceResponse.Message = ex.Message;
                 serviceResponse.Success = false;

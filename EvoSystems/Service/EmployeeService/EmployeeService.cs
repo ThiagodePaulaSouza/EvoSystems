@@ -1,4 +1,5 @@
 ﻿using EvoSystems.DataContext;
+using EvoSystems.Dtos;
 using EvoSystems.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +13,28 @@ namespace EvoSystems.Service.EmployeeService
             _context = context;
         }
 
-        public async Task<ServiceResponse<Employee>> CreateEmployee(Employee newEmployee)
+        public async Task<ServiceResponse<Employee>> CreateEmployee(EmployeeRequestDto newEmployee)
         {
             ServiceResponse<Employee> serviceResponse = new ServiceResponse<Employee>();
 
             try
             {
+                var employee = new Employee
+                {
+                    Name = newEmployee.Name,
+                    RG = newEmployee.Rg,
+                    DepartamentId = newEmployee.DepartamentId
+                };
+
+                if (employee.DepartamentId exist no banco) {
+
+                }
+                else
+                {
+                    vc adiciona um novo no banco? ou devolve erro ao usuario ?
+                }
+
+
                 if (newEmployee == null)
                 {
                     serviceResponse.Data = null;

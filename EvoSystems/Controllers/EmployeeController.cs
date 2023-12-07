@@ -1,4 +1,5 @@
-﻿using EvoSystems.Models;
+﻿using EvoSystems.Dtos;
+using EvoSystems.Models;
 using EvoSystems.Service.EmployeeService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,10 @@ namespace EvoSystems.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<Employee>>> CreateEmployee(Employee newEmployee)
+        public async Task<ActionResult<ServiceResponse<Employee>>> CreateEmployee(EmployeeRequestDto newEmployee)
         {
-            return Ok(await _employeeService.CreateEmployee(newEmployee));
+            var result = await _employeeService.CreateEmployee(newEmployee);
+            return result;
         }
 
         [HttpGet("{id}")]

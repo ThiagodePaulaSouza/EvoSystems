@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EvoSystems.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20231207170556_first-migration")]
-    partial class firstmigration
+    [Migration("20231207205235_Initial-Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,11 +81,14 @@ namespace EvoSystems.Migrations
 
                     b.Property<string>("RG")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartamentId");
+
+                    b.HasIndex("RG")
+                        .IsUnique();
 
                     b.ToTable("Employee");
                 });

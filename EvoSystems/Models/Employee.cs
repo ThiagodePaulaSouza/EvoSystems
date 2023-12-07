@@ -8,9 +8,12 @@ namespace EvoSystems.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
-        public string RG {  get; set; }
-        public bool IsActive { get; set; }
+        [Required]
+        public string RG { get; set; }
+        [Required]
+        public bool IsActive { get; set; } = true;
         [ForeignKey("Departament")]
         public int DepartamentId { get; set; }
         public virtual Departament Department { get; set; }
